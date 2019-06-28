@@ -33,4 +33,25 @@ And load the fixtures
 $ php bin/console doctrine:fixtures:load
 ```
 
+And run the server
+```
+$ php bin/console s:r
+```
+
+## Documentation
+
+Render to the URL to see basics URLs
+```
+http://127.0.0.1/api
+```
+
+### Specials resquest
+
+Get the top two of good or worst users : 
+  * For good users : `order=desc`
+  * For worst users : `order=asc`
+```
+http://127.0.0.1/api/users/top?filter=karma&order=
+```
+
 Enjoy the API !

@@ -23,6 +23,5 @@ class UserController extends AbstractController
         $topUsers = $userRepository->findTwoByKarma($_GET['order']);
         $jsonMovies = $serializer->serialize($topUsers, 'json');
         return new Response($jsonMovies, 200, ['Content-Type' => 'application/json']);
-
     }
 }
