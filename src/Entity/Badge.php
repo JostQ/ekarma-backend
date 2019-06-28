@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\BadgeRepository")
  */
 class Badge
@@ -21,7 +23,7 @@ class Badge
     /**
      * @ORM\Column(type="integer")
      */
-    private $level_min;
+    private $levelMin;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,7 +33,7 @@ class Badge
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $img_url;
+    private $imgUrl;
 
     /**
      * @ORM\Column(type="text")
@@ -39,7 +41,7 @@ class Badge
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="badge")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="badges")
      */
     private $users;
 
@@ -55,12 +57,12 @@ class Badge
 
     public function getLevelMin(): ?int
     {
-        return $this->level_min;
+        return $this->levelMin;
     }
 
-    public function setLevelMin(int $level_min): self
+    public function setLevelMin(int $levelMin): self
     {
-        $this->level_min = $level_min;
+        $this->levelMin = $levelMin;
 
         return $this;
     }
@@ -79,12 +81,12 @@ class Badge
 
     public function getImgUrl(): ?string
     {
-        return $this->img_url;
+        return $this->imgUrl;
     }
 
-    public function setImgUrl(string $img_url): self
+    public function setImgUrl(string $imgUrl): self
     {
-        $this->img_url = $img_url;
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }

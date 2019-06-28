@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -48,18 +50,34 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $img_url;
+    private $imgUrl;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Badge", inversedBy="users")
+     * @ORM\JoinTable(name="user_badge")
      */
-    private $badge;
+    private $badges;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nickname;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $karma;
 
     public function __construct()
     {
         $this->topics = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->badge = new ArrayCollection();
+        $this->badges = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,12 +222,12 @@ class User implements UserInterface
 
     public function getImgUrl(): ?string
     {
-        return $this->img_url;
+        return $this->imgUrl;
     }
 
-    public function setImgUrl(string $img_url): self
+    public function setImgUrl(string $imgUrl): self
     {
-        $this->img_url = $img_url;
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
@@ -217,15 +235,15 @@ class User implements UserInterface
     /**
      * @return Collection|Badge[]
      */
-    public function getBadge(): Collection
+    public function getBadges(): Collection
     {
-        return $this->badge;
+        return $this->badges;
     }
 
     public function addBadge(Badge $badge): self
     {
-        if (!$this->badge->contains($badge)) {
-            $this->badge[] = $badge;
+        if (!$this->badges->contains($badge)) {
+            $this->badges[] = $badge;
         }
 
         return $this;
@@ -233,9 +251,45 @@ class User implements UserInterface
 
     public function removeBadge(Badge $badge): self
     {
-        if ($this->badge->contains($badge)) {
-            $this->badge->removeElement($badge);
+        if ($this->badges->contains($badge)) {
+            $this->badges->removeElement($badge);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?int
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(int $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(string $nickname): self
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    public function getKarma(): ?int
+    {
+        return $this->karma;
+    }
+
+    public function setKarma(int $karma): self
+    {
+        $this->karma = $karma;
 
         return $this;
     }

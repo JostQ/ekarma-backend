@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\TopicRepository")
  */
 class Topic
@@ -34,7 +36,7 @@ class Topic
     private $timestamp;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="topics")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="topics")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;

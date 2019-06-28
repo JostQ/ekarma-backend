@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  */
 class Comment
@@ -32,7 +34,7 @@ class Comment
     private $bad;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $author;
 

@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
 class Tag
@@ -22,7 +24,7 @@ class Tag
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\topic", inversedBy="tags")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Topic", inversedBy="tags")
      * @ORM\JoinColumn(nullable=false)
      */
     private $topic;
