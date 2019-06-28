@@ -11,17 +11,17 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * Class UserController
  * @package App\Controller
- * @Route("/api", name="user_")
+ * @Route("/api/users", name="user_")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users/top", name="top")
+     * @Route("/top", name="top")
      */
     public function top(UserRepository $userRepository, SerializerInterface $serializer)
     {
         $topUsers = $userRepository->findTwoByKarma($_GET['order']);
-        $jsonMovies = $serializer->serialize($topUsers, 'json');
-        return new Response($jsonMovies, 200, ['Content-Type' => 'application/json']);
+        $jsonUsersTop = $serializer->serialize($topUsers, 'json');
+        return new Response($jsonUsersTop, 200, ['Content-Type' => 'application/json']);
     }
 }
