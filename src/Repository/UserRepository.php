@@ -47,4 +47,13 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findTwoByKarma(string $order)
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.karma', $order)
+            ->setMaxResults(2)
+            ->getQuery()
+            ->getResult();
+    }
 }
