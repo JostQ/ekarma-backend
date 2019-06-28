@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/top", name="top")
+     * @Route("/top", name="top", methods={"GET"})
      */
     public function top(UserRepository $userRepository, SerializerInterface $serializer)
     {
