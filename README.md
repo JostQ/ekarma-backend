@@ -42,7 +42,7 @@ $ php bin/console s:r
 
 Render to the URL to see basics URLs
 ```
-http://127.0.0.1/api
+http://127.0.0.1:8000/api
 ```
 
 ### Specials resquest
@@ -51,7 +51,7 @@ Get the top two of good or worst users :
   * For good users : `order=desc`
   * For worst users : `order=asc`
 ```
-http://127.0.0.1/api/users/top?filter=karma&order=
+http://127.0.0.1:8000/api/users/top?filter=karma&order=
 ```
 
 Enjoy the API !
